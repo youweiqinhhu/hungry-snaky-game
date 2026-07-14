@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hungry Snaky ? Youwei</title>
+<title>Hunger Snaky</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -18,7 +18,7 @@ body {
   gap: 12px; position: relative;
 }
 
-/* ?? ?? ??????????????????????????????? */
+/* ── 顶栏 ─────────────────────────────── */
 .header { display: flex; align-items: center; gap: 24px; color: #eee; font-size: 18px; }
 .score-box { background: #16213e; padding: 6px 18px; border-radius: 6px; border: 1px solid #0f3460; }
 .score-box span { color: #ff3b6e; font-weight: bold; }
@@ -31,7 +31,7 @@ canvas { border: 2px solid #0f3460; border-radius: 4px; background: #16213e; dis
 .hint { color: #555; font-size: 13px; }
 .hint kbd { background: #2a2a3a; padding: 2px 8px; border-radius: 3px; border: 1px solid #444; font-family: inherit; }
 
-/* ?? ???? ??????????????????????????????? */
+/* ── 菜单遮罩 ─────────────────────────────── */
 #menu-overlay {
   position: absolute; top: 44px; left: 0; width: 640px; height: 640px;
   background: rgba(8,8,28,0.94); border: 2px solid #1a1a44; border-radius: 4px;
@@ -40,7 +40,7 @@ canvas { border: 2px solid #0f3460; border-radius: 4px; background: #16213e; dis
 }
 #menu-overlay.hidden { opacity: 0; pointer-events: none; }
 
-/* ???? */
+/* 涂鸦标题 */
 .title-block {
   position: relative; display: flex; flex-direction: column; align-items: center;
   margin-bottom: 4px;
@@ -77,7 +77,7 @@ canvas { border: 2px solid #0f3460; border-radius: 4px; background: #16213e; dis
   font-size: 12px; color: #555; letter-spacing: 2px; margin-top: -6px; margin-bottom: 12px;
 }
 
-/* ???? */
+/* 涂鸦按钮 */
 .graffiti-btn {
   width: 230px; padding: 14px 0; font-size: 19px; font-weight: bold;
   font-family: 'Arial Black', 'Impact', sans-serif;
@@ -108,7 +108,7 @@ canvas { border: 2px solid #0f3460; border-radius: 4px; background: #16213e; dis
 }
 .btn-level:hover { color: #fff; border-color: #fff; box-shadow: 6px 6px 0 #665000, 0 0 22px rgba(255,204,0,0.55); }
 
-/* ?? ?? / ?????? ??????????????????? */
+/* ── 选项 / 关卡选择面板 ─────────────────── */
 .panel-overlay {
   display: none; position: absolute; top: 44px; left: 0; width: 640px; height: 640px;
   background: rgba(8,8,28,1); border: 2px solid #1a1a44; border-radius: 4px;
@@ -160,7 +160,7 @@ canvas { border: 2px solid #0f3460; border-radius: 4px; background: #16213e; dis
 .owner-key input:focus { border-color: #333; color: #666; }
 .owner-key input::placeholder { color: #222; letter-spacing: 1px; }
 
-/* ?? ???? (Level 3) ???????????????????? */
+/* ── 速度按钮 (Level 3) ──────────────────── */
 .speed-bar {
   display: none; gap: 8px; align-items: center; color: #ccc; font-size: 14px;
 }
@@ -178,44 +178,44 @@ canvas { border: 2px solid #0f3460; border-radius: 4px; background: #16213e; dis
 
 <div class="game-wrapper">
   <div class="header">
-    <div class="score-box">?? ??: <span id="score">0</span></div>
-    <div class="score-box">?? ??: <span id="highScore">0</span></div>
+    <div class="score-box">🍎 得分: <span id="score">0</span></div>
+    <div class="score-box">🏆 最高: <span id="highScore">0</span></div>
     <div class="level-tag" id="levelTag">LV 1</div>
   </div>
 
   <canvas id="canvas" width="640" height="640"></canvas>
 
-  <!-- ??? -->
+  <!-- 主菜单 -->
   <div id="menu-overlay">
     <div class="title-block">
-      <div class="title-deco d1">??</div>
-      <div class="title-deco d2">?</div>
-      <div class="title-deco d3">??</div>
-      <div class="title-deco d4">??</div>
+      <div class="title-deco d1">🍎</div>
+      <div class="title-deco d2">⭐</div>
+      <div class="title-deco d3">🐍</div>
+      <div class="title-deco d4">💎</div>
       <div class="title-line t1">HU<span class="s">N</span>GRY</div>
       <div class="title-line t2">S<span class="s">N</span>AKY</div>
     </div>
-    <div class="madeby">made by ------youweiqinhhu</div>
-    <button class="graffiti-btn btn-start" id="btn-start">? START GAME</button>
-    <button class="graffiti-btn btn-options" id="btn-options">? OPTIONS</button>
-    <button class="graffiti-btn btn-level hidden" id="btn-level">?? LEVEL SELECT</button>
+    <div class="madeby">made by ------Tina</div>
+    <button class="graffiti-btn btn-start" id="btn-start">▶ START GAME</button>
+    <button class="graffiti-btn btn-options" id="btn-options">⚙ OPTIONS</button>
+    <button class="graffiti-btn btn-level hidden" id="btn-level">🏆 LEVEL SELECT</button>
   </div>
 
-  <!-- ???? -->
+  <!-- 选项面板 -->
   <div class="panel-overlay" id="options-panel">
-    <h2>? CONTROLS</h2>
-    <div class="row">?? &nbsp; <kbd>?</kbd><kbd>?</kbd><kbd>?</kbd><kbd>?</kbd> ? <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div>
-    <div class="row">??/?? &nbsp; <kbd>??</kbd></div>
-    <div class="row">???? &nbsp; <kbd>R</kbd></div>
-    <div class="desc" style="margin-top:8px;">? ? 100 ?????? + ????</div>
-    <div class="desc">? ????????????</div>
+    <h2>⚙ CONTROLS</h2>
+    <div class="row">移动 &nbsp; <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> 或 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div>
+    <div class="row">暂停/继续 &nbsp; <kbd>空格</kbd></div>
+    <div class="row">重新开始 &nbsp; <kbd>R</kbd></div>
+    <div class="desc" style="margin-top:8px;">★ 每 100 分：彩虹闪烁 + 欢呼音效</div>
+    <div class="desc">★ 死亡后按任意键返回主菜单</div>
     <button class="back-btn" id="btn-back-opt">BACK</button>
   </div>
 
-  <!-- ?????? -->
+  <!-- 关卡选择面板 -->
   <div class="panel-overlay" id="level-panel">
-    <h2>?? LEVEL SELECT</h2>
-    <div class="desc">???? ? ???? = ???? & ??</div>
+    <h2>🏆 LEVEL SELECT</h2>
+    <div class="desc">选择关卡 · 更高关卡 = 更多挑战 & 奖励</div>
     <div id="level-list"></div>
     <div class="owner-key">
       <input type="password" id="ownerKeyInput" placeholder="Owner's Key" autocomplete="off">
@@ -225,9 +225,9 @@ canvas { border: 2px solid #0f3460; border-radius: 4px; background: #16213e; dis
 
   <div class="game-over" id="gameOver"></div>
 
-  <!-- ??? (Level 3) -->
+  <!-- 速度栏 (Level 3) -->
   <div class="speed-bar" id="speedBar">
-    ???
+    速度：
     <button class="speed-btn active" data-spd="0">sloth~</button>
     <button class="speed-btn" data-spd="1">slow</button>
     <button class="speed-btn" data-spd="2">normal</button>
@@ -236,10 +236,10 @@ canvas { border: 2px solid #0f3460; border-radius: 4px; background: #16213e; dis
   </div>
 
   <div class="hint">
-    <kbd>????</kbd> / <kbd>WASD</kbd> ?? &nbsp;|&nbsp;
-    <kbd>??</kbd> ?? &nbsp;|&nbsp;
-    <kbd>R</kbd> ?? &nbsp;|&nbsp;
-    <kbd>M</kbd> ??
+    <kbd>↑↓←→</kbd> / <kbd>WASD</kbd> 移动 &nbsp;|&nbsp;
+    <kbd>空格</kbd> 暂停 &nbsp;|&nbsp;
+    <kbd>R</kbd> 重来 &nbsp;|&nbsp;
+    <kbd>M</kbd> 菜单
   </div>
 </div>
 
@@ -267,7 +267,7 @@ const OWNER_KEY = "asdfghjkl;'";
 const GRID_SIZE = 40;
 const CELL_SIZE = canvas.width / GRID_SIZE;
 
-// ?? ???? ??????????????????????????????
+// ── 游戏状态 ──────────────────────────────
 let snake, direction, nextDirection, food, score, highScore, gameRunning, gamePaused;
 let gameTimeout, rainbowActive = false, rainbowStart = 0;
 let tickCount = 0, inGame = false, menuMusicTimer = null;
@@ -282,7 +282,7 @@ const SPEED_NAMES = ['sloth~', 'slow', 'normal', 'fast', 'cheetah~'];
 
 function currentSpeed() { return currentLevel >= 3 ? SPEEDS[speedChoice] : 130; }
 
-// ?? ??????? ????????????????????????
+// ── 关卡数据持久化 ────────────────────────
 function loadStats() {
   try { return JSON.parse(localStorage.getItem('snakeStats')) || {}; }
   catch { return {}; }
@@ -313,7 +313,7 @@ function checkUnlock(lv) {
   return true; // L1 always unlocked
 }
 
-// ?? ???? ??????????????????????????????
+// ── 音频引擎 ──────────────────────────────
 let audioCtx = null;
 function getAudio() {
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -403,12 +403,12 @@ function playDeathSound() {
   osc2.start(now + 0.65); osc2.stop(now + 1.2);
 }
 
-// ?? BGM ?? ??????????????????????????????
+// ── BGM 乐谱 ──────────────────────────────
 const PENTATONIC = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.5, 1174.66];
 const MELODY = [0,2,4,5,4,2,1,0, 3,4,5,6,5,4,2,0, 0,1,3,4,5,4,3,1, 2,3,4,5,4,0,2,3];
 const BASS   = [0,0,0,0,4,4,4,4, 2,2,2,2,5,5,5,5, 0,0,0,0,4,4,4,4, 2,2,5,5,0,0,0,0];
 
-// ????
+// 菜单音乐
 const MENU_BEAT = 220;
 let menuBeat = 0;
 function menuMusicTick() {
@@ -434,12 +434,12 @@ function menuMusicTick() {
 function startMenuMusic() { stopMenuMusic(); menuBeat = 0; menuMusicTick(); }
 function stopMenuMusic() { clearTimeout(menuMusicTimer); menuMusicTimer = null; }
 
-// ?? BGM
+// 游戏 BGM
 function bgmTick() {
   if (!gameRunning || gamePaused) return;
   const ac = getAudio(); const now = ac.currentTime;
 
-  // ??????
+  // 倒计时滴答声
   if (countdown > 0) {
     const osc = ac.createOscillator(); const gain = ac.createGain();
     osc.type = 'sine'; osc.frequency.setValueAtTime(880, now);
@@ -482,17 +482,17 @@ function bgmTick() {
   }
 }
 
-// ?? ??? / ?? ?????????????????????????
+// ── 障碍物 / 星星 ─────────────────────────
 function spawnObstacles() {
   obstacles = [];
   const occupied = new Set(snake.map(s => `${s.x},${s.y}`));
   occupied.add(`${food.x},${food.y}`);
-  // ????? 5 ??????
+  // 蛇头正前方 5 格禁止障碍物
   const head = snake[0];
   for (let d = 1; d <= 5; d++) {
     occupied.add(`${head.x + nextDirection.x * d},${head.y + nextDirection.y * d}`);
   }
-  // Level 2: 8-12 ???; Level 3: 12-18 ?
+  // Level 2: 8-12 个障碍; Level 3: 12-18 个
   const count = currentLevel === 2 ? 8 + Math.floor(Math.random() * 5)
                                    : 12 + Math.floor(Math.random() * 7);
   if (count >= GRID_SIZE * GRID_SIZE - snake.length - 1) return;
@@ -515,10 +515,10 @@ function spawnStar() {
       if (!occupied.has(`${x},${y}`)) free.push({ x, y });
   if (free.length === 0) return;
   star = free[Math.floor(Math.random() * free.length)];
-  starTimer = 10; // 10 ?
+  starTimer = 10; // 10 秒
 }
 
-// ?? ???? ??????????????????????????????
+// ── 游戏逻辑 ──────────────────────────────
 highScore = parseInt(localStorage.getItem('snakeHighScore')) || 0;
 highScoreEl.textContent = highScore;
 
@@ -544,7 +544,7 @@ function initGame(level) {
   star = null; starTimer = 0;
   obstacles = [];
   if (currentLevel >= 3) {
-    countdown = 0; l3NeedPause = true; gamePaused = true;  // ????????
+    countdown = 0; l3NeedPause = true; gamePaused = true;  // 先选速度再倒计时
   } else {
     countdown = 3; l3NeedPause = false; gamePaused = false;
   }
@@ -574,34 +574,34 @@ function spawnFood() {
 function update() {
   if (!gameRunning || gamePaused) return;
 
-  // ???????
+  // 死亡动画播放中
   if (dying) {
     dyingTick++;
-    // ??????
+    // 每段依次掉落
     dyingSegments.forEach((seg, i) => {
       seg.fall = Math.max(0, (dyingTick - i * 2) * CELL_SIZE * 1.2);
     });
-    // ????
+    // 动画结束
     if (dyingTick > dyingSegments.length * 2 + 30) {
       dying = false;
       gameRunning = false;
       stopLoop();
-      gameOverEl.textContent = '?? ???? - ????????';
+      gameOverEl.textContent = '💀 游戏结束 - 按任意键返回菜单';
     }
     return;
   }
 
-  // ???????
+  // 倒计时中：不动
   if (countdown > 0) return;
 
   direction = { ...nextDirection };
   const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
 
-  // ?? / ????
+  // 撞墙 / 撞障碍物
   if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE) return endGame(false);
   if (obstacles.some(o => o.x === head.x && o.y === head.y)) return endGame(false);
 
-  // ?????
+  // 星星倒计时
   if (star) {
     starTimer -= currentSpeed() / 1000;
     if (starTimer <= 0) star = null;
@@ -628,28 +628,28 @@ function update() {
     score += 20; scoreEl.textContent = score;
     playStarSound();
     star = null;
-    // ??????????
+    // 随机概率再刷新一颗星
     if (Math.random() < 0.5) spawnStar();
     spawnFood();
   } else {
     snake.pop();
   }
 
-  // ?????? (Level 2+)
+  // 随机刷新星星 (Level 2+)
   if (!star && currentLevel >= 2 && Math.random() < 0.002) spawnStar();
 }
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // ???
+  // 网格线
   ctx.strokeStyle = '#1a1a3a'; ctx.lineWidth = 0.5;
   for (let i = 0; i <= GRID_SIZE; i++) {
     ctx.beginPath(); ctx.moveTo(i * CELL_SIZE, 0); ctx.lineTo(i * CELL_SIZE, canvas.height); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(0, i * CELL_SIZE); ctx.lineTo(canvas.width, i * CELL_SIZE); ctx.stroke();
   }
 
-  // ???
+  // 障碍物
   obstacles.forEach(o => {
     ctx.fillStyle = '#555577';
     ctx.fillRect(o.x * CELL_SIZE + 2, o.y * CELL_SIZE + 2, CELL_SIZE - 4, CELL_SIZE - 4);
@@ -657,7 +657,7 @@ function draw() {
     ctx.strokeRect(o.x * CELL_SIZE + 2, o.y * CELL_SIZE + 2, CELL_SIZE - 4, CELL_SIZE - 4);
   });
 
-  // ??
+  // 星星
   if (star) {
     const sx = star.x * CELL_SIZE + CELL_SIZE / 2;
     const sy = star.y * CELL_SIZE + CELL_SIZE / 2;
@@ -673,7 +673,7 @@ function draw() {
     }
     ctx.closePath(); ctx.fill();
     ctx.shadowBlur = 0;
-    // ??????
+    // 剩余时间指示
     const pct = starTimer / 10;
     ctx.fillStyle = `rgba(255,255,255,${0.5 + pct * 0.5})`;
     ctx.font = 'bold 10px sans-serif'; ctx.textAlign = 'center';
@@ -681,7 +681,7 @@ function draw() {
     ctx.textAlign = 'start';
   }
 
-  // ??
+  // 食物
   ctx.fillStyle = '#ff3b6e'; ctx.shadowColor = '#ff3b6e'; ctx.shadowBlur = 8;
   ctx.beginPath();
   ctx.arc(food.x * CELL_SIZE + CELL_SIZE / 2, food.y * CELL_SIZE + CELL_SIZE / 2,
@@ -690,7 +690,7 @@ function draw() {
 
   if (rainbowActive && performance.now() - rainbowStart > 3000) rainbowActive = false;
 
-  // ???????????
+  // 蛇身（死亡动画或正常）
   if (dying) {
     dyingSegments.forEach((seg, i) => {
       const t = i / Math.max(dyingSegments.length - 1, 1);
@@ -698,7 +698,7 @@ function draw() {
       const x = seg.x * CELL_SIZE + 1;
       const y = seg.y * CELL_SIZE + 1 + seg.fall;
       ctx.fillRect(x, y, CELL_SIZE - 2, CELL_SIZE - 2);
-      // ???????
+      // 眼睛跟头一起掉
       if (i === 0) {
         ctx.fillStyle = '#fff';
         const cx = seg.x * CELL_SIZE + CELL_SIZE / 2, cy = seg.y * CELL_SIZE + CELL_SIZE / 2 + seg.fall;
@@ -749,7 +749,7 @@ function draw() {
     });
   }
 
-  // ???
+  // 倒计时
   if (countdown > 0 && gameRunning && !gamePaused) {
     ctx.fillStyle = 'rgba(0,0,0,0.55)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#fff'; ctx.font = 'bold 80px "Arial Black", sans-serif'; ctx.textAlign = 'center';
@@ -762,16 +762,16 @@ function draw() {
   if (gamePaused && gameRunning && !dying) {
     ctx.fillStyle = 'rgba(0,0,0,0.5)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
     if (currentLevel >= 3) {
-      // Level 3: ??????
+      // Level 3: 显示速度选择
       ctx.fillStyle = '#ffcc00'; ctx.font = 'bold 28px "Arial Black", sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText('SELECT SPEED ?', canvas.width / 2, canvas.height / 2 - 30);
+      ctx.fillText('SELECT SPEED ⬇', canvas.width / 2, canvas.height / 2 - 30);
       ctx.fillStyle = '#ccc'; ctx.font = '16px "Segoe UI", sans-serif';
-      ctx.fillText('????????????', canvas.width / 2, canvas.height / 2 + 40);
+      ctx.fillText('点击下方按钮或按空格继续', canvas.width / 2, canvas.height / 2 + 40);
     } else {
       ctx.fillStyle = '#eee'; ctx.font = 'bold 32px "Segoe UI", sans-serif';
-      ctx.fillText('???', canvas.width / 2, canvas.height / 2 - 8);
+      ctx.fillText('暂停中', canvas.width / 2, canvas.height / 2 - 8);
       ctx.font = '16px "Segoe UI", sans-serif';
-      ctx.fillText('??????', canvas.width / 2, canvas.height / 2 + 24);
+      ctx.fillText('按空格键继续', canvas.width / 2, canvas.height / 2 + 24);
     }
     ctx.textAlign = 'start';
   }
@@ -786,14 +786,14 @@ function endGame(won) {
       localStorage.setItem('snakeHighScore', highScore);
       highScoreEl.textContent = highScore;
     }
-    // ????????
+    // 启动死亡掉落动画
     dying = true; dyingTick = 0;
     dyingSegments = snake.map(s => ({ x: s.x, y: s.y, fall: 0 }));
     gameOverEl.textContent = '';
     return;
   }
   gameRunning = false; stopLoop();
-  gameOverEl.textContent = '?? ????';
+  gameOverEl.textContent = '🎉 你赢了！';
 }
 
 let cdAcc = 0;
@@ -801,7 +801,7 @@ function tick() {
   update();
   draw();
   if (gameRunning && !gamePaused && !dying) { bgmTick(); tickCount++; }
-  // ????????? 1?
+  // 倒计时递减（每秒减 1）
   if (countdown > 0 && gameRunning && !gamePaused) {
     cdAcc += currentSpeed();
     if (cdAcc >= 1000) { countdown--; cdAcc = 0; }
@@ -812,7 +812,7 @@ function tick() {
 function restartLoop() { clearTimeout(gameTimeout); if (gameRunning) gameTimeout = setTimeout(tick, currentSpeed()); }
 function stopLoop() { clearTimeout(gameTimeout); }
 
-// ?? ????? ????????????????????????????
+// ── 返回主菜单 ────────────────────────────
 function backToMenu() {
   stopLoop();
   inGame = false;
@@ -830,13 +830,13 @@ function updateMenuButtons() {
   else btnLevel.classList.add('hidden');
 }
 
-// ?? ?????? ??????????????????????????
+// ── 关卡选择面板 ──────────────────────────
 function buildLevelPanel() {
   const stats = loadStats();
   const levels = [
-    { lv: 1, name: 'Level 1', desc: '???? ? ?????', unlock: true },
-    { lv: 2, name: 'Level 2', desc: '??? + ?????? (?=20?, 15???)', unlock: checkUnlock(2) },
-    { lv: 3, name: 'Level 3', desc: '??? + ?? + ??????', unlock: checkUnlock(3) },
+    { lv: 1, name: 'Level 1', desc: '经典模式 · 无额外障碍', unlock: true },
+    { lv: 2, name: 'Level 2', desc: '障碍物 + 限时星星奖励 (★=20分, 15秒消失)', unlock: checkUnlock(2) },
+    { lv: 3, name: 'Level 3', desc: '障碍物 + 星星 + 五档速度调节', unlock: checkUnlock(3) },
   ];
   levelList.innerHTML = levels.map(l => {
     const best = (stats['L' + l.lv] || {}).maxScore || 0;
@@ -845,9 +845,9 @@ function buildLevelPanel() {
                  style="${unlocked ? '' : 'pointer-events:none'}">
       <div>
         <div class="lv-name">${l.name}</div>
-        <div class="lv-best">?? ???: ${best}</div>
+        <div class="lv-best">🏆 最高分: ${best}</div>
       </div>
-      <div class="lv-badge ${unlocked ? 'open' : 'lock'}">${unlocked ? 'UNLOCKED' : '?? LOCKED'}</div>
+      <div class="lv-badge ${unlocked ? 'open' : 'lock'}">${unlocked ? 'UNLOCKED' : '🔒 LOCKED'}</div>
     </div>`;
   }).join('');
 
@@ -866,7 +866,7 @@ function buildLevelPanel() {
   });
 }
 
-// ?? ???? ??????????????????????????????
+// ── 按钮事件 ──────────────────────────────
 document.querySelectorAll('.graffiti-btn, .back-btn, .level-item:not(.locked)').forEach(el => {
   el.addEventListener('click', () => playClickSound());
 });
@@ -884,7 +884,7 @@ btnLevel.addEventListener('click', () => {
 });
 btnBackLv.addEventListener('click', () => levelPanel.classList.remove('show'));
 
-// Owner's Key ??
+// Owner's Key 解锁
 ownerKeyInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     e.preventDefault();
@@ -894,25 +894,25 @@ ownerKeyInput.addEventListener('keydown', (e) => {
       stats['L2'] = { maxScore: 1000, over300: 10 };
       saveStats(stats);
       ownerKeyInput.value = '';
-      ownerKeyInput.placeholder = '? Unlocked!';
+      ownerKeyInput.placeholder = '✔ Unlocked!';
       setTimeout(() => { ownerKeyInput.placeholder = "Owner's Key"; }, 1500);
       buildLevelPanel();
       updateMenuButtons();
     } else {
       ownerKeyInput.value = '';
-      ownerKeyInput.placeholder = '? Wrong key';
+      ownerKeyInput.placeholder = '✘ Wrong key';
       setTimeout(() => { ownerKeyInput.placeholder = "Owner's Key"; }, 1200);
     }
   }
 });
 
-// Level 3 ????
+// Level 3 速度按钮
 document.querySelectorAll('.speed-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     playClickSound();
     speedChoice = parseInt(btn.dataset.spd);
     document.querySelectorAll('.speed-btn').forEach((b, i) => b.classList.toggle('active', i === speedChoice));
-    // ???????????
+    // 初始选速度：触发倒计时
     if (l3NeedPause) {
       l3NeedPause = false;
       countdown = 3; gamePaused = false; cdAcc = 0;
@@ -921,9 +921,9 @@ document.querySelectorAll('.speed-btn').forEach(btn => {
   });
 });
 
-// ?? ?? ??????????????????????????????????
+// ── 键盘 ──────────────────────────────────
 window.addEventListener('keydown', (e) => {
-  // ???????????????
+  // 死亡动画结束后，任意键返回菜单
   if (inGame && !gameRunning && !dying) {
     if (!e.key.startsWith('F') && e.key !== 'Meta' && e.key !== 'Alt' && e.key !== 'Control'
         && e.key !== 'Shift' && e.key !== 'CapsLock' && e.key !== 'NumLock' && e.key !== 'ScrollLock') {
@@ -932,7 +932,7 @@ window.addEventListener('keydown', (e) => {
     }
   }
 
-  // ????Enter ??
+  // 菜单中：Enter 开始
   if (!inGame) {
     if (e.key === 'Enter') {
       getAudio(); menuOverlay.classList.add('hidden'); stopMenuMusic();
@@ -958,11 +958,10 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// ?? ?? ??????????????????????????????????
+// ── 启动 ──────────────────────────────────
 drawEmptyGrid();
 updateMenuButtons();
 startMenuMusic();
 </script>
 </body>
 </html>
-
