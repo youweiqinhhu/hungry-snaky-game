@@ -300,17 +300,7 @@ function recordScore(lv, s) {
 }
 
 function checkUnlock(lv) {
-  const stats = loadStats();
-  if (lv === 2) {
-    const l1 = stats['L1'] || { maxScore: 0, over300: 0 };
-    return l1.maxScore >= 500 || l1.over300 >= 3;
-  }
-  if (lv === 3) {
-    const l1 = stats['L1'] || { maxScore: 0, over300: 0 };
-    const l2 = stats['L2'] || { maxScore: 0, over300: 0 };
-    return l1.maxScore >= 1000 || l2.over300 >= 3 || l2.maxScore >= 500;
-  }
-  return true; // L1 always unlocked
+  return lv >= 1 && lv <= 3; // 三个关卡默认全部开放
 }
 
 // ── 音频引擎 ──────────────────────────────
@@ -492,9 +482,9 @@ function spawnObstacles() {
   for (let d = 1; d <= 5; d++) {
     occupied.add(`${head.x + nextDirection.x * d},${head.y + nextDirection.y * d}`);
   }
-  // Level 2: 8-12 个障碍; Level 3: 12-18 个
-  const count = currentLevel === 2 ? 8 + Math.floor(Math.random() * 5)
-                                   : 12 + Math.floor(Math.random() * 7);
+  // 难度逐关递增：Level 1 无障碍，Level 2 中等障碍，Level 3 高密度障碍
+  const count = currentLevel === 2 ? 24 + Math.floor(Math.random() * 9)
+                                   : 48 + Math.floor(Math.random() * 17);
   if (count >= GRID_SIZE * GRID_SIZE - snake.length - 1) return;
   for (let k = 0; k < count; k++) {
     let x, y, tries = 0;
@@ -835,8 +825,8 @@ function buildLevelPanel() {
   const stats = loadStats();
   const levels = [
     { lv: 1, name: 'Level 1', desc: '经典模式 · 无额外障碍', unlock: true },
-    { lv: 2, name: 'Level 2', desc: '障碍物 + 限时星星奖励 (★=20分, 15秒消失)', unlock: checkUnlock(2) },
-    { lv: 3, name: 'Level 3', desc: '障碍物 + 星星 + 五档速度调节', unlock: checkUnlock(3) },
+    { lv: 2, name: 'Level 2', desc: '24–32 个随机障碍 + 限时星星奖励', unlock: checkUnlock(2) },
+    { lv: 3, name: 'Level 3', desc: '48–64 个随机障碍 + 星星 + 五档速度调节', unlock: checkUnlock(3) },
   ];
   levelList.innerHTML = levels.map(l => {
     const best = (stats['L' + l.lv] || {}).maxScore || 0;
